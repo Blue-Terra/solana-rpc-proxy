@@ -1,0 +1,5 @@
+tests/
+build/
+node_modules/
+.prettierignore
+.prettierrc.json
