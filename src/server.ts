@@ -20,7 +20,7 @@ app.post('/', jsonParser, (req: Request, res: Response) => {
     headers: req.headers,
     body: JSON.stringify(req.body),
   }
-  request(options, (error: Error, response: any, body: any) => {
+  const callback = (error: Error, response: any, body: any) => {
     if (error || response.statusCode !== 200) {
       return res.status(500).json({
         ok: false,
@@ -28,7 +28,8 @@ app.post('/', jsonParser, (req: Request, res: Response) => {
       })
     }
     return res.json(JSON.parse(body))
-  })
+  }
+  return request(options, callback)
 })
 
 app.listen(PORT, () => {
